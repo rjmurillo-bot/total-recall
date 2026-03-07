@@ -11,7 +11,7 @@ source "$SKILL_DIR/scripts/_compat.sh"
 
 WORKSPACE="${OPENCLAW_WORKSPACE:-$(cd "$SKILL_DIR/../.." && pwd)}"
 MEMORY_DIR="${MEMORY_DIR:-$WORKSPACE/memory}"
-SESSIONS_DIR="${SESSIONS_DIR:-$HOME/.openclaw/agents/main/sessions}"
+SESSIONS_DIR="${SESSIONS_DIR:-$HOME/.openclaw/agents/orchestrator/sessions}"
 
 # LLM provider configuration (OpenAI-compatible APIs)
 LLM_BASE_URL="${LLM_BASE_URL:-https://openrouter.ai/api/v1}"

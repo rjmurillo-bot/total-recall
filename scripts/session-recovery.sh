@@ -9,7 +9,7 @@ source "$SKILL_DIR/scripts/_compat.sh"
 
 WORKSPACE="${OPENCLAW_WORKSPACE:-$(cd "$SKILL_DIR/../.." && pwd)}"
 MEMORY_DIR="${MEMORY_DIR:-$WORKSPACE/memory}"
-SESSIONS_DIR="${SESSIONS_DIR:-$HOME/.openclaw/agents/main/sessions}"
+SESSIONS_DIR="${SESSIONS_DIR:-$HOME/.openclaw/agents/orchestrator/sessions}"
 HASH_FILE="$MEMORY_DIR/.observer-last-hash"
 RECOVERY_LOG="$WORKSPACE/logs/session-recovery.log"
 
