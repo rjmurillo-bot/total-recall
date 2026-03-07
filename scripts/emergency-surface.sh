@@ -165,6 +165,18 @@ send_discord_alert() {
       -d @- >/dev/null
 }
 
+send_slack_alert() {
+  local token channel summary
+  token="$(cat "$(aie_get "notifications.slack.bot_token_file" "$HOME/.config/openclaw/secrets/slack_bot_token")" 2>/dev/null)"
+  channel="$(aie_get "notifications.slack.channel" "")"
+  summary="$1"
+  [[ -n "$token" && -n "$channel" ]] || return 1
+  curl -sS --max-time 20 -X POST "https://slack.com/api/chat.postMessage" \
+    -H "Authorization: Bearer $token" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -cn --arg ch "$channel" --arg txt "🧠 *AIE Alert*: $summary" '{channel:$ch,text:$txt}')" >/dev/null
+}
+
 send_webhook_alert() {
   local url headers_json
   url="$(aie_get "notifications.webhook.url" "")"
@@ -202,6 +214,10 @@ dispatch_alert() {
   fi
   if aie_notification_channel_enabled "webhook" && send_webhook_alert "$summary"; then
     log "Alert delivered via webhook."
+    delivered=0
+  fi
+  if aie_notification_channel_enabled "slack" && send_slack_alert "$summary"; then
+    log "Alert delivered via Slack."
     delivered=0
   fi
   return "$delivered"

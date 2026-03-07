@@ -102,6 +102,10 @@ notifications:
   discord:
     enabled: false
     webhook_url: ""
+  slack:
+    enabled: true
+    bot_token_file: ~/.config/openclaw/secrets/slack_bot_token
+    channel: "D0AC05MCCAF"
   webhook:
     enabled: false
     url: ""
