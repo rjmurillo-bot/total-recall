@@ -73,6 +73,21 @@ connectors:
       - "{memory_dir}/observations.md"
       - "{memory_dir}/{today}.md"
       - "{memory_dir}/favorites.md"
+  obsidian:
+    enabled: true
+    vault_path: /home/richard/Documents/Obsidian Vault
+    lookback_minutes: 30
+    max_files: 10
+    ignore_patterns: ".trash,.obsidian"
+  trello:
+    enabled: true
+    boards:
+      - id: "6993f5e8924936e600a33c22"
+        label: "Job Hunt"
+        importance: "0.7"
+      - id: "613a58664398ac416ed6b8cf"
+        label: "Sammamish Move"
+        importance: "0.5"
 
 notifications:
   quiet_hours:
