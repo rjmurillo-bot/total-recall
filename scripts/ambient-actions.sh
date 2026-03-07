@@ -82,11 +82,13 @@ if ! aie_bool "ambient_actions.enabled"; then
   exit 0
 fi
 
-if [[ -z "${OPENROUTER_API_KEY:-}" ]]; then
-  log "ERROR: OPENROUTER_API_KEY not found in $ENV_FILE"
-  emit_stage_log "fatal" '{"error":"missing_openrouter_api_key"}'
+if [[ -z "${OPENROUTER_API_KEY:-}" && -z "${LLM_API_KEY:-}" ]]; then
+  log "ERROR: Neither OPENROUTER_API_KEY nor LLM_API_KEY found"
+  emit_stage_log "fatal" '{"error":"missing_api_key"}'
   exit 1
 fi
+# Ensure compat: if only LLM_API_KEY is set, alias it
+OPENROUTER_API_KEY="${OPENROUTER_API_KEY:-$LLM_API_KEY}"
 
 TODAY_FILE="$RUMINATION_DIR/${TODAY}.jsonl"
 if [[ ! -s "$TODAY_FILE" ]]; then
