@@ -1,0 +1,16 @@
+{
+  "date": "2026-03-06",
+  "model": "claude-opus-4.6",
+  "runtime_seconds": 45,
+  "observations_total": 9,
+  "observations_archived": 1,
+  "hooks_created": 1,
+  "tokens_before": 460,
+  "tokens_after": 425,
+  "tokens_saved": 35,
+  "reduction_pct": 7.6,
+  "critical_false_archives": 0,
+  "validation_passed": true,
+  "dry_run": true,
+  "notes": "All observations from today (age 0d). Only 1 minimal-score transient item qualifies for archival. Low reduction expected for fresh file."
+}

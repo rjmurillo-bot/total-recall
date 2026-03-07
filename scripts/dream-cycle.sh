@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-OPENCLAW_WORKSPACE="${OPENCLAW_WORKSPACE:-$HOME/workspace}"
+OPENCLAW_WORKSPACE="${OPENCLAW_WORKSPACE:-$HOME/repos/total-recall}"
 SKILL_DIR="$OPENCLAW_WORKSPACE/skills/total-recall"
 
 # Load environment if present
