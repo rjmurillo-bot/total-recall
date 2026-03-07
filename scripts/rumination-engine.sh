@@ -278,10 +278,14 @@ log "Calling LLM (model: $RUMINATION_MODEL)..."
 # ─── LLM call ────────────────────────────────────────────────────────────────
 # Determine API auth method
 AUTH_HEADER=""
-API_URL="https://openrouter.ai/api/v1/chat/completions"
+API_URL="${LLM_BASE_URL:+${LLM_BASE_URL}/chat/completions}"
+API_URL="${API_URL:-https://openrouter.ai/api/v1/chat/completions}"
 MODEL="$RUMINATION_MODEL"
 
-if [[ -n "${ANTHROPIC_API_KEY:-}" ]]; then
+if [[ -n "${LLM_API_KEY:-}" && -n "${LLM_BASE_URL:-}" ]]; then
+  AUTH_HEADER="Authorization: Bearer $LLM_API_KEY"
+  USE_ANTHROPIC=false
+elif [[ -n "${ANTHROPIC_API_KEY:-}" ]]; then
   AUTH_HEADER="x-api-key: $ANTHROPIC_API_KEY"
   API_URL="https://api.anthropic.com/v1/messages"
   USE_ANTHROPIC=true
@@ -341,13 +345,16 @@ if [[ "${USE_ANTHROPIC:-false}" == "true" ]]; then
   LLM_TEXT=$(echo "$BODY" | jq -r '.content[0].text // empty' 2>/dev/null)
   TOKENS_USED=$(echo "$BODY" | jq -r '(.usage.input_tokens // 0) + (.usage.output_tokens // 0)' 2>/dev/null || echo 0)
 else
-  # OpenRouter API
+  # OpenRouter / Copilot API
   HTTP_RESP=$(curl -s -w "\n__STATUS__:%{http_code}" \
     "$API_URL" \
     -H "Content-Type: application/json" \
     -H "$AUTH_HEADER" \
     -H "HTTP-Referer: $HTTP_REFERER" \
     -H "X-Title: Max Rumination Engine" \
+    -H "Editor-Version: OpenClaw/1.0" \
+    -H "Editor-Plugin-Version: 1.0" \
+    -H "Copilot-Integration-Id: vscode-chat" \
     -d "$PAYLOAD" \
     --max-time 60 2>/dev/null || echo "CURL_ERROR")
 

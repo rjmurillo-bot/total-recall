@@ -176,11 +176,14 @@ call_openrouter() {
 
   local http_resp
   http_resp=$(timeout 65 curl -s -w "\n__STATUS__:%{http_code}" \
-    "https://openrouter.ai/api/v1/chat/completions" \
+    "${LLM_BASE_URL:-https://openrouter.ai/api/v1}/chat/completions" \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+    -H "Authorization: Bearer ${LLM_API_KEY:-$OPENROUTER_API_KEY}" \
     -H "HTTP-Referer: $HTTP_REFERER" \
     -H "X-Title: $title" \
+    -H "Editor-Version: OpenClaw/1.0" \
+    -H "Editor-Plugin-Version: 1.0" \
+    -H "Copilot-Integration-Id: vscode-chat" \
     -d "$payload" \
     --max-time 60 2>/dev/null || echo "CURL_ERROR")
 

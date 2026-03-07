@@ -29,8 +29,8 @@ if ! aie_bool "connectors.gmail.enabled"; then
   exit 0
 fi
 
-if [[ -z "$GMAIL_ACCOUNT" || -z "$GMAIL_KEYRING_PASSWORD" ]]; then
-  log "SKIP missing Gmail account or keyring password in config"
+if [[ -z "$GMAIL_ACCOUNT" ]]; then
+  log "SKIP missing Gmail account in config"
   exit 0
 fi
 

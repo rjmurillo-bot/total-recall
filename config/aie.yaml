@@ -1,46 +1,45 @@
-workspace: .
+workspace: /home/richard/repos/total-recall
 
 paths:
-  workspace: .
-  memory_dir: ./memory
-  events_bus: ./memory/events/bus.jsonl
-  sensor_state_dir: ./memory/sensor-state
-  rumination_dir: ./memory/rumination
-  followups_file: ./memory/rumination/follow-ups.jsonl
-  observations_file: ./memory/observations.md
-  preconscious_buffer: ./memory/preconscious-buffer.md
-  logs_dir: ./logs
-  health_data_dir: ./health/data
-  env_file: ./.env
+  workspace: /home/richard/repos/total-recall
+  memory_dir: /home/richard/repos/total-recall/memory
+  events_bus: /home/richard/repos/total-recall/memory/events/bus.jsonl
+  sensor_state_dir: /home/richard/repos/total-recall/memory/sensor-state
+  rumination_dir: /home/richard/repos/total-recall/memory/rumination
+  followups_file: /home/richard/repos/total-recall/memory/rumination/follow-ups.jsonl
+  observations_file: /home/richard/repos/total-recall/memory/observations.md
+  preconscious_buffer: /home/richard/repos/total-recall/memory/preconscious-buffer.md
+  logs_dir: /home/richard/repos/total-recall/logs
+  health_data_dir: /home/richard/repos/total-recall/health/data
+  env_file: /home/richard/repos/total-recall/.env
   perplexity_search_script: ""
   openclaw_config: ~/.openclaw/openclaw.json
 
 profile:
-  assistant_name: Max
-  primary_user_name: the user
-  household_context: their household
+  assistant_name: DevClaw
+  primary_user_name: Richard
+  household_context: Richard's household
   family_labels: []
-  timezone: UTC
-  location_label: ""
+  timezone: America/Los_Angeles
+  location_label: "Pacific Northwest"
 
 api:
-  http_referer: https://github.com/gavdalf/total-recall
+  http_referer: https://github.com/rjmurillo-bot/total-recall
 
+# Models: Using GitHub Copilot proxy (free tokens)
+# These are the model IDs as Copilot's API expects them
 models:
-  rumination: google/gemini-2.5-flash
-  classification: google/gemini-2.5-flash
-  enrichment: google/gemini-2.5-flash
-  ambient_actions: google/gemini-2.5-flash
+  rumination: claude-haiku-4.5
+  classification: claude-haiku-4.5
+  enrichment: claude-haiku-4.5
+  ambient_actions: claude-haiku-4.5
 
 connectors:
-  # Sender substrings that raise email importance to 0.8.
-  # Add your own patterns here (employer, accountant, doctor, school, etc.)
-  # Examples: "mycompany", "school", "hospital", "tax-authority", "bank"
   high_importance_senders: []
   calendar:
-    enabled: false
+    enabled: true
     provider: gog
-    account: ""
+    account: rjmurillo@gmail.com
     calendar_id: primary
     lookahead_days: 2
     max_events: 50
@@ -52,9 +51,9 @@ connectors:
     account: ionos
     unread_limit: 10
   gmail:
-    enabled: false
+    enabled: true
     provider: gog
-    account: ""
+    account: rjmurillo@gmail.com
     unread_query: is:unread
     max_messages: 10
     keyring_password: ""
@@ -78,7 +77,7 @@ connectors:
 notifications:
   quiet_hours:
     enabled: true
-    timezone: UTC
+    timezone: America/Los_Angeles
     start_hour: 22
     end_hour: 7
   telegram:
@@ -114,20 +113,20 @@ ambient_actions:
     default_limit: 3
   tool_settings:
     calendar_lookup:
-      gog_account: ""
+      gog_account: rjmurillo@gmail.com
       gog_keyring_password: ""
     gmail_search:
-      gog_account: ""
+      gog_account: rjmurillo@gmail.com
       gog_keyring_password: ""
     gmail_read:
-      gog_account: ""
+      gog_account: rjmurillo@gmail.com
       gog_keyring_password: ""
     ionos_search:
       account: ionos
     fitbit_data:
-      enabled: true
+      enabled: false
     openrouter_balance:
-      enabled: true
+      enabled: false
     web_search:
       enabled: false
       script: ""

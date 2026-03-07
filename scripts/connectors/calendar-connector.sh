@@ -33,14 +33,14 @@ if ! aie_bool "connectors.calendar.enabled"; then
   exit 0
 fi
 
-if [[ -z "$CALENDAR_ACCOUNT" || -z "$KEYRING_PASSWORD" ]]; then
-  log "SKIP missing calendar account or keyring password in config"
-  exit 0
-fi
-
 log() {
   echo "[calendar] $*"
 }
+
+if [[ -z "$CALENDAR_ACCOUNT" ]]; then
+  log "SKIP missing calendar account in config"
+  exit 0
+fi
 
 health_check() {
   if ! GOG_KEYRING_PASSWORD="$KEYRING_PASSWORD" GOG_ACCOUNT="$CALENDAR_ACCOUNT" \

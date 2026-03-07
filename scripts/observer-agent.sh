@@ -245,6 +245,9 @@ for ATTEMPT in 1 2; do
   RESPONSE=$(curl -s --max-time 60 "$LLM_BASE_URL/chat/completions" \
     -H "Authorization: Bearer $LLM_API_KEY" \
     -H "Content-Type: application/json" \
+    -H "Editor-Version: OpenClaw/1.0" \
+    -H "Editor-Plugin-Version: 1.0" \
+    -H "Copilot-Integration-Id: vscode-chat" \
     -d "$ATTEMPT_PAYLOAD")
   log "DEBUG: LLM Response (first 500 chars): ${RESPONSE:0:500}"
 
