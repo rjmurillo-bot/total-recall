@@ -79,6 +79,9 @@ connectors:
     lookback_minutes: 30
     max_files: 10
     ignore_patterns: ".trash,.obsidian"
+  github:
+    enabled: true
+    max_notifications: 50
   trello:
     enabled: true
     boards:

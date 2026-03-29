@@ -64,6 +64,7 @@ run_connector "fitbit"
 run_connector "filewatch"
 run_connector "obsidian"
 run_connector "trello"
+run_connector "github"
 
 EVENTS_AFTER=$(wc -l < "$BUS" 2>/dev/null || echo 0)
 NEW_EVENTS=$((EVENTS_AFTER - EVENTS_BEFORE))
