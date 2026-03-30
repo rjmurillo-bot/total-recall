@@ -82,6 +82,12 @@ connectors:
   github:
     enabled: true
     max_notifications: 50
+  rescuetime:
+    enabled: true
+    api_key_file: ""
+    productive_hours_threshold: 4.0
+    distracted_hours_threshold: 2.0
+    top_activities: 5
   trello:
     enabled: true
     boards:
